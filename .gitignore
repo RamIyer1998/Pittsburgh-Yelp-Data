@@ -1,6 +1,9 @@
 # Holds my API Key
 config.py
 
+# No need to share data
+pittsburgh_yelp_data.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
