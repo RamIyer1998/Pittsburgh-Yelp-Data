@@ -15,9 +15,10 @@ def main():
     food_type = []
     latitude = []
     longitude = []
+    permaclosed = []
 
     offset = 0
-    for x in range(0, 15):
+    for x in range(0, 17):
         offset = x
         params = get_params(offset)
         data = get_data(params)
@@ -42,8 +43,9 @@ def main():
             food_type.append(business["categories"][0]["alias"])
             latitude.append(business["coordinates"]["latitude"])
             longitude.append(business["coordinates"]["longitude"])
+            permaclosed.append(business["is_closed"])
 
-    to_csv(name, rating, prices, review_count, address, zipcode, food_type, latitude, longitude)   
+    to_csv(name, rating, prices, review_count, address, zipcode, food_type, latitude, longitude, permaclosed)  
     
 
     
@@ -60,12 +62,12 @@ def get_data(params):
     url = 'https://api.yelp.com/v3/businesses/search'
     return requests.get(url, params=params, headers=headers)
     
-def to_csv(name, rating, price, review_count, address, zipcode, food_type, latitude, longitude):
+def to_csv(name, rating, price, review_count, address, zipcode, food_type, latitude, longitude, permaclosed):
     with open('pittsburgh_yelp_data.csv', 'w') as f:
         writer = csv.writer(f)
-        writer.writerow(['Restaurant Name', 'Average Rating', 'Price', 'Review Count', 'Street Address', 'Zip Code', 'Food Genre', 'Latitude', 'Longitude'])
+        writer.writerow(['Restaurant Name', 'Average Rating', 'Price', 'Review Count', 'Street Address', 'Zip Code', 'Food Genre', 'Latitude', 'Longitude', 'Permanently Closed'])
         for x in range(0, len(name)-1):
-            writer.writerow([name[x], rating[x], price[x], review_count[x], address[x], zipcode[x], food_type[x], latitude[x], longitude[x]])
+            writer.writerow([name[x], rating[x], price[x], review_count[x], address[x], zipcode[x], food_type[x], latitude[x], longitude[x], permaclosed[x]])
         f.close()
 
 
