@@ -1,3 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Pittsburgh Cuisine</title>
+		<link rel = "stylesheet" href = "../../css/style.css">
+		<link rel = "stylesheet" href = "../../css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <!---Start of making 3 columns to organzie website-->
+  <div class = "header">
+        <img src="../../../images/hero1.jpg" alt="Banner Image">
+  </div>
+        
+  <div class = "row">
+    <div class="column1">
+        <br><br><br><br>
+        <ul id="menu">
+                <li class="menuitem"><a href="../../../index.html">Home</a></li>
+                <li class="menuitem"><a href="../Getting_the_Data/">Getting the Data</a></li>
+                <li class="menuitem"><a href="page2.html">Page 2</a></li>
+                <li class="menuitem"><a class="active" href=#>About our Data</a></li>
+              </ul>
+    </div>
+
+    <div class = "column2">
+        <br>
+        <br>
+       <h1 style="text-align:center">About our Data</h1>
+        <hr>
+        <p>
+		With a seemingly endless amount of food establishments in Allegheny County, it may be difficult to keep track of restaurants and pricing. 
+		As an attempt to simplify the problem, we have gathered data on over 600 restaurants, relating to prices, rating, location, review counts as well as the food genre. 
+		Hopefully, the accumulation of the data will help many find a restaurant that fits their prices and desires. 
+        </p>
+		
+		<p>
+		Before we begin, there are few things to note about the data gathered from Yelp. 
+		Regarding pricing, Yelp uses four different ratings including $, $$, $$$, $$$$. 
+		It may seem a little confusing as to what exactly is the pricing range for symbols, but it goes as follows:
+		</p>
+		
+		<ul style="align:center">
+			<li>$: $1-$10</li>
+			<li>$$: $11-$30</li>
+			<li>$$$: $31-$60</li>
+			<li>$$$$: $61+</li>
+		</ul>
+		
+		<p>
+		After getting a definite price range for the $ symbols and yelps price rating, it’s time to talk about reviews and average rating. 
+		Sure, a 4 or 5 star review looks really nice, but it’s important to note the amount of ratings that carry into the review. 
+		A 4 star rating on a restaurant that has been rated 267 times is more trustworthy than a 4 star rating on a restaurant that has been rated 79 times. 
+		It isn’t a strict rule to follow, but more as a guideline when trying to find places to eat. 
+		At the end of the day, whenever it comes to rating a restaurant, it is on the consumer to find out for themselves whether or not they like the experience or food of any restaurant. 
+		</p>
+		
+		<p>
+		Another thing to note is that Allegheny County has a total area of 745 square miles, so not every restaurant grants consumers the ability to travel or eat out. 
+		However, sometimes people feel adventurous or some have to commute to work, so many options are mapped. 
+		Even though Yelp is a great tool for restaurants, it is worthy to mention any reviews are based on opinion, so a bad review might not be the death blow to a night out.
+		</p>
+		
+		<br>
+		
+		<h2> Food Genres </h2>
+		<br>
+		<p>
+		New American - A label given to a restaurant that features foods from many different regions and ethnicities. 
+		New American oftentimes is the label given to show what the restaurant isn’t. A restaurant might feature pasta but isn’t Italian. 
+		It might also have sushi on the menu but not be considered Japanese. A New American restaurant a place that offers reflect America’s “melting pot status” through its food.
+		</p>
+		
+		<p>
+		Traditional American - This category is apt at describing the food that the restaurants offer. 
+		Traditional American covers food that is mixed with other regional cuisines but have a significant identity. 
+		A great example would be apple pie or philly cheese steak sandwich. Usually it is a mix of steak dishes, burgers and sandwiches, as well as seafood.
+		</p>
+		
+		<p>
+		Culture Food - We had a large variety of restaurants that are defined by ethnicity and the restaurants are categorized as such. 
+		The list of ethnic food is below:
+		</p>
+		
+		<ul style="align:center">
+			<li>Argentine</li>
+			<li>Brazilian</li>
+			<li>Caribbean</li>
+			<li>Greek</li>
+			<li>Italian</li>
+			<li>Korean</li>		
+			<li>Latin</li>
+			<li>Mediterranean</li>
+			<li>Mexican</li>
+			<li>Polish</li>
+			<li>Thai</li>
+			<li>Vietnamese</li>
+		</ul>
+        
+    <hr>
+    <h3>Footnotes</h3>
+    <a href ="#">Add in as needed</a>
+
+</div>
+    <div class = "column3">.....
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="https://i1155.photobucket.com/albums/p559/scrolltotop/arrow29.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
+            <noscript>Not seeing a <a href="https://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+            
+
+    </div>  
+
+</body>
+</html>
+=======
 <!DOCTYPE html>
 <html>
 <head>
