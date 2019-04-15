@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Pittsburgh Cuisine - Getting the Data</title>
+        <link rel = "stylesheet" href = "../../css/style.css">
+        <link rel = "stylesheet" href = "../../css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <!---Start of making 3 columns to organzie website-->
+  <div class = "header">
+        <img src="../../../images/hero1.jpg"  alt="Banner Image">
+  </div>
+
+  <div class="column1">
+        <br><br><br><br>
+        <ul id="menu">
+                <li class="menuitem"><a href="../../../index.html">Home</a></li>
+                <li class="menuitem"><a class="active" href=#>Getting the Data</a></li>
+                <li class="menuitem"><a href="page2.html">Page 2</a></li>
+                <li class="menuitem"><a href="../page3.html">Page 3</a></li>
+              </ul>
+    </div>
+        
+  <div class = "row">
+    <div class="col-md-8 container" >
+        <br>
+        <br>
+        
+        <h1 style="text-align: center">Getting the Data</h1>
+        <hr>
+        <p>
+                The start to any process in data journalism is always the same: getting the data itself. When we first sat down to 
+                talk about this, we had to think about various amounts of things. We had to think about what kind of message we wanted to send, who we wanted 
+                to target, etc. But the most important was by far getting the data. On this page, I'll walk you through how we went about doing that.
+        </p>
+        <br>
+        <p>
+                When thinking about gathering data for a project, whether it be a machine learning model or for an article, there are a few 
+                factors you need to consider. Right off the bat you need to think about: 
+        </p>
+        <ul>
+                <li> The source of your data </li>
+                <li> The kind of data you need </li>
+                <li> Whether or not a dataset exists or not for your topic</li>
+        </ul>
+        <br>
+        <p> Considering we already had a focus in place, we had the luxury of being able to answer all of these with 
+                relative ease. For the first issue, the answer was reasonably self-explanatory. There aren't many sources on the internet 
+        with as comprehensive of a compendium of food data as <a href="https://www.yelp.com/">Yelp,</a> so we knew immediately where we would get our data from. </p>
+        <br>
+        <p> Next up was the kind of data that we would need. Primarily, we needed a comprehensive list of a large variety of options in the Pittsburgh area (particularly the name, style of food, and address). From there, we definitely needed price 
+                to help craft visualizations that helped focus on budget options. From there, we also realized that in order to give people an idea of how well-received the restaurant was, we would need to 
+                get both the number of reviews that an establishment had received as well as the number of reviews they had received to avoid bias. Lastly, we needed the latitude and longitude in order to craft maps in Tableau.</p>
+        <br>
+        <p>For the last one, we realized that it was best to craft our own dataset. While there do exist undoubtedly large yelp datasets that encapsulate what we need, there are a few reasons why we decided on building our own. First of 
+                all, we wanted more control over the data that we would include. While a lots of miscellaneous data in a dataset is better than having almost no data in a dataset, it could take time to filter out data that we didn't need. The next problem is more pressing, and that is that the data may not be accurate. 
+        By getting data directly from Yelp at that moment, we ensured that our data was as up to date as possible (at least in accordance with Yelp itself), which erased any doubts that we didn't have any data that may have "expired." </p>
+       <br>
+       <p> Now that we had answered those questions, the next task was to actually get the data itself. While a member on our team had experience in data scraping using various libraries such as BeautifulSoup and Requests, it appeared to be quite a pain to perform scraping in that way due to the potential changes in metadata, structure of the pages, possibility of missing values, etc.
+                Thankfully, <a href="https://www.yelp.com/developers/documentation/v3/business_search">Yelp has their own API!</a> With this, we could handle potential errors and missing information much more gracefully, and getting the data itself was made significantly easier and less time-consuming. This led to an easier experience of writing the code.
+       </p>
+       <br>
+       <p>
+               When writing the scraper itself, one of the first things that we had to do was figure out a way to actually connect to the yelp API itself. Originally, we were planning on using the Python wrapper that was written for the API, but due to some difficulties, we defaulted to just sending and receiving data from the Requests library. 
+               As for the actual parameters, the only ones we saw fit to use were the following:
+       </p>
+       <ul>
+               <li><code>Term:</code>" Food"</li>
+               <li><code>Location:</code>" Allegheny County"</li>
+       </ul>
+       <p>In addition to these, there are also the <code>limit</code>  and <code>offset</code> fields which I should address. The way that the Yelp API works is that you submit a list of parameters, and it can return up to 1000 businesses for a single query. That being said, you can only get up to a max of 50 results sent to your client at a given time. The <code>limit</code> field dictates the number of results you want sent back to your machine between 1 and 50. However, what if you need more than 50 data points? What about the other 950 results? In order to access that, there's another parameter field known as <code>offset</code>. 
+        In simple terms, this could serve as a "next page" parameter. For instance, say you've already gotten results 1-50, and now you want results 51-100. You would set your <code>limit</code> parameter to 50, and then your <code>offset</code> would also be set to 50, indicating that you already got the first 50 results, and now you want the next 50.
+        </p>
+        <br>
+        <p>After you send the parameters to Yelp, they return the results back to you in something called JSON format. Since we used Python to make this scraper, you could also say that it returned a dictionary object (here are some basic docs in case you don't know about <a href="https://www.json.org/">JSON</a> or <a href="https://www.w3schools.com/python/python_dictionaries.asp">dictionaries</a>). Here's an example of what a returned JSON object from the Yelp API looks like:</p>
+        <br>
+        <pre>
+                        {
+                                "name": "XXX Restaurant",
+                                "rating": 4,
+                                "price": "$",
+                                "phone": "+14152520800",
+                                "id": "E8RJkjfdcwgtyoPMjQ_Olg",
+                                "alias": "four-barrel-coffee-san-francisco",
+                                "is_closed": false,
+                                "categories": [
+                                  {
+                                    "alias": "coffee",
+                                    "title": "Coffee & Tea"
+                                  }
+                                ],
+                                "review_count": 1738,
+                                "name": "Four Barrel Coffee",
+                                "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
+                                "coordinates": {
+                                  "latitude": 37.7670169511878,
+                                  "longitude": -122.42184275
+                                },
+                                "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
+                                "location": {
+                                  "city": "San Francisco",
+                                  "country": "US",
+                                  "address2": "",
+                                  "address3": "",
+                                  "state": "CA",
+                                  "address1": "375 Valencia St",
+                                  "zip_code": "94103"
+                                },
+                                "distance": 1604.23,
+                                "transactions": ["pickup", "delivery"]
+                        }
+        </pre>
+        <p>There's a LOT of information given to us through the Yelp API, but thankfully, we're only interested in the <code>name</code>, <code>rating</code>, <code>price</code>, <code>alias</code>, <code>location</code>, and <code>coordinates</code>. For each business we got, we stored each of them in lists that are each responsible for holding each of those 
+        values until we're ready to dump them into a <code>csv</code> file.</p>
+        <br>
+        <p>While we're getting the data, however, we have to be mindful of a few characteristics that could indicate bad data. In our particular scraper, we checked for the following: </p>
+        <ul>
+                <li><strong>Make sure every restaurant has a price tag.</strong> Our entire purpose for building this dataset is to find a way to convey to college students which places they could eat at on a budget, so no restaurant without a price should be included in our dataset.</li>
+                <li><strong>Make sure every restaurant has a zip code.</strong> Similar reason to above, but we also need to tell them where this restaurant is. If there is no zip code, then there is probably no real address as well.</li>
+                <li><strong>Make sure every restaurant has coordinates.</strong> If there are no coordinates, then we can't plug them into Tableau to make a map. The map for us is an essential visualization that makes it easy for students to find an affordable, highly-rated place to eat.</li>
+                <li><strong>Make sure no restaurant has the primary alias of "golf.""</strong> When compiling the dataset for the first time, we noticed a few establishments had a primary alias (the type of establishment. One that we would normally look for is "Chinese" or "American") of golf, which threw off a few of our visualizations. We decided to filter this out manually in our script.</li>
+        </ul>
+        <br>
+        <p>After the data has been aggregated, we then use the <code>csv</code> package in Python to neatly throw everything into a csv file. This is what we can then use to make visualizations in Tableau, and can also begin to draw conclusions from the data.</p>
+        <br>
+        <p>Thanks for reading! If you wish to see the full code, you can find it <a href="https://github.com/RamIyer1998/Pittsburgh-Yelp-Data/blob/master/data_collection.py">here.</a></p> 
+        
+    <hr>
+    <h3>Footnotes</h3>
+    <a href ="#">Add in as needed</a>
+
+</div>
+
+    <div class = "column3">.....
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script type="text/javascript">var scrolltotop={setting:{startline:100,scrollto:0,scrollduration:1e3,fadeduration:[500,100]},controlHTML:'<img src="https://i1155.photobucket.com/albums/p559/scrolltotop/arrow29.png" />',controlattrs:{offsetx:5,offsety:5},anchorkeyword:"#top",state:{isvisible:!1,shouldvisible:!1},scrollup:function(){this.cssfixedsupport||this.$control.css({opacity:0});var t=isNaN(this.setting.scrollto)?this.setting.scrollto:parseInt(this.setting.scrollto);t="string"==typeof t&&1==jQuery("#"+t).length?jQuery("#"+t).offset().top:0,this.$body.animate({scrollTop:t},this.setting.scrollduration)},keepfixed:function(){var t=jQuery(window),o=t.scrollLeft()+t.width()-this.$control.width()-this.controlattrs.offsetx,s=t.scrollTop()+t.height()-this.$control.height()-this.controlattrs.offsety;this.$control.css({left:o+"px",top:s+"px"})},togglecontrol:function(){var t=jQuery(window).scrollTop();this.cssfixedsupport||this.keepfixed(),this.state.shouldvisible=t>=this.setting.startline?!0:!1,this.state.shouldvisible&&!this.state.isvisible?(this.$control.stop().animate({opacity:1},this.setting.fadeduration[0]),this.state.isvisible=!0):0==this.state.shouldvisible&&this.state.isvisible&&(this.$control.stop().animate({opacity:0},this.setting.fadeduration[1]),this.state.isvisible=!1)},init:function(){jQuery(document).ready(function(t){var o=scrolltotop,s=document.all;o.cssfixedsupport=!s||s&&"CSS1Compat"==document.compatMode&&window.XMLHttpRequest,o.$body=t(window.opera?"CSS1Compat"==document.compatMode?"html":"body":"html,body"),o.$control=t('<div id="topcontrol">'+o.controlHTML+"</div>").css({position:o.cssfixedsupport?"fixed":"absolute",bottom:o.controlattrs.offsety,right:o.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"Scroll to Top"}).click(function(){return o.scrollup(),!1}).appendTo("body"),document.all&&!window.XMLHttpRequest&&""!=o.$control.text()&&o.$control.css({width:o.$control.width()}),o.togglecontrol(),t('a[href="'+o.anchorkeyword+'"]').click(function(){return o.scrollup(),!1}),t(window).bind("scroll resize",function(t){o.togglecontrol()})})}};scrolltotop.init();</script>
+            <noscript>Not seeing a <a href="https://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+            
+    </div>  
+</body>
+</html>
