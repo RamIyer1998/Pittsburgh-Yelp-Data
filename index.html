@@ -6,47 +6,77 @@
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/bootstrap.min.css">
     <script>
-            var btnContainer = document.getElementById("myDIV");
-            
-            // Get all buttons with class="btn" inside the container
-            var btns = btnContainer.getElementsByClassName("btn");
-            
-            // Loop through the buttons and add the active class to the current/clicked button
-            for (var i = 0; i < btns.length; i++) {
-              btns[i].addEventListener("click", function() {
+        var btnContainer = document.getElementById("myDIV");
+
+        // Get all buttons with class="btn" inside the container
+        var btns = btnContainer.getElementsByClassName("btn");
+
+        // Loop through the buttons and add the active class to the current/clicked button
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
                 var current = document.getElementsByClassName("active");
                 current[0].className = current[0].className.replace(" active", "");
                 this.className += " active";
-              });
-            }
-            </script>
+            });
+        }
+    </script>
 </head>
 
 <body>
 
     <!---Start of making 3 columns to organzie website-->
-    
+
     <div class="header">
-            <img src="images/hero1.jpg" alt="Banner Image">
-        </div>
+        <img src="images/hero1.jpg" alt="Banner Image">
+    </div>
 
-        <div class="column1">
-            <br><br><br><br>
-            <ul id="menu">
-                <li class="menuitem"><a class="active" href="#">Home</a></li>
-                <li class="menuitem"><a href="src/html/Getting_the_Data/">Getting the Data</a></li>
-                <li class="menuitem"><a href="src/html/page2.html">Page 2</a></li>
-                <li class="menuitem"><a href="src/html/About_our_Data/">About our Data</a></li>
-            </ul>
-        </div>
+    <div class="column1">
+        <br><br><br><br>
+        <ul id="menu">
+            <li class="menuitem"><a class="active" href="#">Home</a></li>
+            <li class="menuitem"><a href="src/html/Getting_the_Data/">Getting the Data</a></li>
+            <li class="menuitem"><a href="src/html/page2.html">Page 2</a></li>
+            <li class="menuitem"><a href="src/html/About_our_Data/">About our Data</a></li>
+        </ul>
+    </div>
     <div class="row">
-        <div class="col-md-8 container" style="text-align: center">
+        <div class="col-md-8 container" >
             <br>
             <br>
 
-            <h1>Pittsburgh Cuisine</h1>
+            <h1 style="text-align: center">Pittsburgh Cuisine</h1>
             <hr>
-            
+            <p>Are you a broke college student balling on a budget and want some food? Are you a first timer in
+                Pittsburgh
+                and want an easy way to find local favorites? Trying to take that someone special out on a date and want
+                cheap to expensive options in an easy map format? Well look no further! We have all that data in one
+                location just for you! </p><br>
+            <p>
+                <i>“J’Eat Yet? Did I what? J’Eat Yet? I have no idea what you are saying.”</i> If you have had this
+                conversation with a Pittsburgher, you’re not the only one so don’t worry. "J’Eat Yet" is a common slang
+                word
+                for the native people of Pittsburgh. If someone asks you <i>“J’Eat Yet?”</i> They're asking if you “have
+                eaten
+                yet?” If you’re like most people you just smile and nod at these Pittsburghers who have weird words
+                for
+                things (i.e. "buggy" for a shopping cart). Or, if you’re like the other, you just give that look of confusion
+                and
+                just keep asking what the heck they are saying until they answer in a language that you can actually
+                understand.
+            </p><br>
+            <p>If you like Google Maps to help show what’s around to eat and you like Yelp for the ratings, then you
+                will like this even more. The goal for this site was to first show you all the locations of restaurants
+                in Allegheny County. We want to show a couple different data visualizations that:</p>
+            <ol>
+                <li>Showed the location, price, and the name of the restaurant</li>
+                <li>Which kinds of food were prevalent in each zip code</li>
+                <li>How many restaurants where in each price range (using Yelp's scale)</li>
+                <li>Which streets had the most restaurants</li>
+            </ol>
+            <br>
+                <p>We hoped that these different break-downs would be able to help people pick where they
+                wanted to go more easily, and maybe even keep that common argument of <i>“where do you want to eat?”</i>
+                at a minimum.</p>
 
             <hr>
             <h3>Footnotes</h3>
@@ -61,8 +91,8 @@
                 for more info.</noscript>
 
         </div>
-        
-    
+
+
 
 </body>
 
