@@ -1,6 +1,6 @@
 certifi==2019.3.9
 chardet==3.0.4
-httplib2==0.12.1
+httplib2==0.18.0
 idna==2.8
 oauth2==1.9.0.post1
 requests==2.21.0
